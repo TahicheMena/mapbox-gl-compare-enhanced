@@ -1,40 +1,32 @@
-'use strict';
-/* global mapboxgl */
+import 'mapbox-gl-compare-enhanced/dist/style.css'
+import Compare from 'mapbox-gl-compare-enhanced'
 
-require('../');
-mapboxgl.accessToken = window.localStorage.getItem('MapboxAccessToken');
+mapboxgl.accessToken = localStorage.getItem('MapboxAccessToken') || 'YOUR_MAPBOX_ACCESS_TOKEN';
 
-var before = new mapboxgl.Map({
+const before = new mapboxgl.Map({
   container: 'before',
-  style: 'mapbox://styles/mapbox/light-v8'
+  style: 'mapbox://styles/mapbox/light-v9',
+  center: [0, 0],
+  zoom: 2,
 });
 
-var after = new mapboxgl.Map({
+const after = new mapboxgl.Map({
   container: 'after',
-  style: 'mapbox://styles/mapbox/dark-v8'
+  style: 'mapbox://styles/mapbox/dark-v9',
+  center: [0, 0],
+  zoom: 2,
 });
 
-// Use either of these patterns to select a container for the compare widget
-var wrapperSelector = '#wrapper';
-var wrapperElement = document.body.querySelectorAll('#wrapper')[0];
-
-// available options
-var options = {
+// Initialize the comparison slider
+const container = '#wrapper';
+const compare = new Compare(before, after, container, {
   mousemove: true,
-  orientation: 'horizontal'
-}
+  orientation: 'horizontal',
+});
 
-window.compare = new mapboxgl.Compare(
-  before,
-  after, 
-  wrapperSelector
-  // options
-);
-
-var closeButton = document.getElementById('close-button');
-
-closeButton.addEventListener('click', function(e) {
-  after.getContainer().style.display = 'none';
-  window.compare.remove();
+// Handle "close comparison" button
+document.getElementById('close-button').addEventListener('click', () => {
+  document.getElementById('after').style.display = 'none';
+  compare.remove();
   after.remove();
 });

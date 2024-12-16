@@ -2,82 +2,86 @@
 
 ### Table of Contents
 
--   [Compare][1]
-    -   [Parameters][2]
-    -   [Examples][3]
-    -   [setSlider][4]
-        -   [Parameters][5]
-    -   [on][6]
-        -   [Parameters][7]
-    -   [fire][8]
-        -   [Parameters][9]
-    -   [off][10]
-        -   [Parameters][11]
+*   [Compare][1]
+    *   [Parameters][2]
+    *   [Examples][3]
+    *   [setSlider][4]
+        *   [Parameters][5]
+    *   [on][6]
+        *   [Parameters][7]
+    *   [fire][8]
+        *   [Parameters][9]
+    *   [off][10]
+        *   [Parameters][11]
+    *   [remove][12]
 
 ## Compare
 
--   **See: [Swipe between maps][12]**
+Creates a comparison slider between two Mapbox GL maps.
 
 ### Parameters
 
--   `a` **[Object][13]** The first Mapbox GL Map
--   `b` **[Object][13]** The second Mapbox GL Map
--   `container` **([string][14] \| [HTMLElement][15])** An HTML Element, or an element selector string for the compare container. It should be a wrapper around the two map Elements.
--   `options` **[Object][13]** 
-    -   `options.orientation` **[string][14]** The orientation of the compare slider. `vertical` creates a vertical slider bar to compare one map on the left (map A) with another map on the right (map B). `horizontal` creates a horizontal slider bar to compare on mop on the top (map A) and another map on the bottom (map B). (optional, default `vertical`)
-    -   `options.mousemove` **[boolean][16]** If `true` the compare slider will move with the cursor, otherwise the slider will need to be dragged to move. (optional, default `false`)
+*   `mapA` **[Object][13]** The first Mapbox GL map instance.
+*   `mapB` **[Object][13]** The second Mapbox GL map instance.
+*   `container` **([string][14] | [HTMLElement][15])** The container for the compare slider. Can be a CSS selector string or an HTML element.
+*   `options` **[Object][13]** Configuration options for the comparison slider. (optional, default `{}`)
+
+    *   `options.orientation` **[string][14]** Orientation of the slider: `vertical` (default) for left/right comparison or `horizontal` for top/bottom comparison. (optional, default `"vertical"`)
+    *   `options.mousemove` **[boolean][16]** If `true`, the slider moves with the cursor; otherwise, the slider is draggable. (optional, default `false`)
 
 ### Examples
 
 ```javascript
-var compare = new mapboxgl.Compare(beforeMap, afterMap, '#wrapper', {
-  orientation: 'vertical',
+const compare = new Compare(mapA, mapB, '#container', {
+  orientation: 'horizontal',
   mousemove: true
 });
 ```
 
 ### setSlider
 
-Set the position of the slider.
+Set the slider to a specific position.
 
 #### Parameters
 
--   `x` **[number][17]** Slider position in pixels from left/top.
+*   `position` **[number][17]** The position to set the slider to.
 
 ### on
 
-Adds a listener for events of a specified type.
+Add an event listener.
 
 #### Parameters
 
--   `type` **[string][14]** The event type to listen for; one of `slideend`.
--   `fn`  
--   `listener` **[Function][18]** The function to be called when the event is fired.
+*   `type` **[string][14]** The event type.
+*   `listener` **[Function][18]** The event listener function.
 
-Returns **[Compare][19]** `this`
+Returns **[Compare][1]** The Compare instance.
 
 ### fire
 
-Fire an event of a specified type.
+Trigger an event.
 
 #### Parameters
 
--   `type` **[string][14]** The event type to fire; one of `slideend`.
--   `data` **[Object][13]** Data passed to the event listener.
+*   `type` **[string][14]** The event type.
+*   `data` **[Object][13]** The event data.
 
-Returns **[Compare][19]** `this`
+Returns **[Compare][1]** The Compare instance.
 
 ### off
 
-Removes an event listener previously added with `Compare#on`.
+Remove an event listener.
 
 #### Parameters
 
--   `type` **[string][14]** The event type previously used to install the listener.
--   `fn`  
--   `listener` **[Function][18]** The function previously installed as a listener.
+*   `type` **[string][14]** The event type.
+*   `listener` **[Function][18]** The event listener function.
 
-Returns **[Compare][19]** `this`
+Returns **[Compare][1]** The Compare instance.
+
+### remove
+
+Remove the comparison slider and cleanup resources.
 
 [1]: #compare
 
@@ -101,7 +105,7 @@ Returns **[Compare][19]** `this`
 
 [11]: #parameters-4
 
-[12]: https://www.mapbox.com/mapbox-gl-js/example/mapbox-gl-compare/
+[12]: #remove
 
 [13]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
@@ -114,5 +118,3 @@ Returns **[Compare][19]** `this`
 [17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
 [18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
-
-[19]: #compare

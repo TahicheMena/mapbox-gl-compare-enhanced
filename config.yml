@@ -1,0 +1,33 @@
+version: 2.1
+
+executors:
+  node-executor:
+    docker:
+      - image: circleci/node:22.11.0
+
+jobs:
+  build:
+    executor: node-executor
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Build project
+          command: npm run build
+  deploy:
+    executor: node-executor
+    steps:
+      - run:
+          name: Deploy to S3
+          command: aws s3 cp --recursive --acl public-read dist s3://mapbox-gl-js/plugins/$CIRCLE_PROJECT_REPONAME/$CIRCLE_TAG
+
+workflows:
+  version: 2
+  deploy_workflow:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build

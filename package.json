@@ -1,42 +1,54 @@
 {
-  "name": "mapbox-gl-compare",
-  "version": "0.4.1",
-  "description": "Swipe and sync between two maps",
-  "main": "index.js",
-  "directories": {
-    "example": "example"
+  "name": "mapbox-gl-compare-enhanced",
+  "version": "1.0.0",
+  "description": "Enhanced version of Mapbox GL Compare: Swipe and sync between two maps with improved compatibility for modern environments (Node.js, Vite, etc.)",
+  "main": "./dist/mapbox-gl-compare-enhanced.umd.cjs",
+  "module": "./dist/mapbox-gl-compare-enhanced.js",
+  "exports": {
+    ".": {
+      "require": "./dist/mapbox-gl-compare-enhanced.umd.cjs",
+      "import": "./dist/mapbox-gl-compare-enhanced.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start": "cp style.css example/style.css && budo example/index.js --serve example/bundle.js --dir example --live",
-    "build": "cp style.css dist/mapbox-gl-compare.css && NODE_ENV=production && browserify index.js | uglifyjs -c -m > dist/mapbox-gl-compare.js",
-    "test": "npm run lint && browserify -t envify test/index.js | smokestack -b firefox | tap-status",
-    "lint": "eslint --no-eslintrc -c .eslintrc index.js",
-    "docs": "documentation build index.js --format=md > API.md"
+    "build": "vite build",
+    "test": "vitest",
+    "lint": "eslint src"
   },
+  "type": "module",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mapbox/mapbox-gl-compare.git"
+    "url": "git://github.com/TahicheMena/mapbox-gl-compare"
   },
   "keywords": [
     "mapbox",
     "mapboxgl",
-    "ui"
+    "ui",
+    "mapboxgl-compare"
   ],
   "author": "Mapbox",
   "license": "ISC",
   "devDependencies": {
-    "browserify": "^17.0.0",
-    "budo": "^11.7.0",
-    "documentation": "^14.0.0",
-    "envify": "^4.1.0",
-    "eslint": "^8.22.0",
+    "@babel/eslint-parser": "^7.25.9",
+    "@eslint/js": "^9.17.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "eslint": "^9.17.0",
+    "globals": "^15.13.0",
+    "jsdom": "^25.0.1",
     "mapbox-gl": "^2.10.0",
-    "smokestack": "^3.6.0",
-    "tap-status": "^1.0.1",
-    "tape": "^5.6.0",
-    "uglify-js": "^3.17.0"
+    "puppeteer": "^23.10.4",
+    "vitest": "^2.1.8"
   },
   "dependencies": {
-    "@mapbox/mapbox-gl-sync-move": "^0.3.1"
+    "@mapbox/mapbox-gl-sync-move": "^0.3.1",
+    "eventemitter3": "^5.0.0"
   }
 }

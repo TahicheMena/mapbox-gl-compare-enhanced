@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8' />
-  <title></title>
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
-  <link href='style.css' rel='stylesheet' />
+  <meta charset="utf-8" />
+  <title>Mapbox GL Compare Example</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
   <style>
-  body { margin:0; padding:0; overflow:hidden; }
-  body * {
-     -webkit-touch-callout: none;
-       -webkit-user-select: none;
-          -moz-user-select: none;
-           -ms-user-select: none;
-               user-select: none;
-  }
-  .map {
-    position:absolute;
-    top:0;
-    bottom:0;
-    width:100%;
-  }
-  .controls {
-    position:absolute;
-    top:0;
-    right:0;
-  }
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+    .controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+    }
+    #wrapper {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
-  <div id='wrapper'>
-    <div id='before' class='map'></div>
-    <div id='after' class='map'></div>
+  <div id="wrapper">
+    <div id="before" class="map"></div>
+    <div id="after" class="map"></div>
     <div class="controls">
-        <button id="close-button">X</button>
+      <button id="close-button">X</button>
     </div>
   </div>
-  <script src='example/bundle.js'></script>
+  <script type="module" src="index.js"></script>
 </body>
 </html>

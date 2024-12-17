@@ -25,7 +25,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git://github.com/TahicheMena/mapbox-gl-compare"
+    "url": "git://github.com/TahicheMena/mapbox-gl-compare-enhanced.git"
   },
   "keywords": [
     "mapbox",

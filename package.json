@@ -33,7 +33,7 @@
     "ui",
     "mapboxgl-compare"
   ],
-  "author": "Mapbox",
+  "author": "Tahiche Mena",
   "license": "ISC",
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.9",
